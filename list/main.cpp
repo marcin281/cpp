@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 
 using namespace std;
 
@@ -7,7 +8,7 @@ struct Node {
     Node* next;
 
     Node(string t) {
-        task = t;
+        task = std::move(t);
         next = nullptr;
     }
 };
@@ -26,7 +27,7 @@ void show_tasks() {
         }
     }
 }
-void add_task(string task) {
+void add_task(const string& task) {
     Node* new_node = new Node(task);
     if(head == nullptr) {
         head = new_node;
@@ -41,7 +42,7 @@ void add_task(string task) {
         temp->next = new_node;
     }
 }
-void delete_task(string task) {
+void delete_task(const string& task) {
     Node* temp = head;
     Node* prev = nullptr;
     if (head == nullptr) {
@@ -51,7 +52,6 @@ void delete_task(string task) {
     else {
         while(temp != nullptr) {
             if(temp->task == task) {
-                if(temp->task == task) {
                     if(prev == nullptr) {
                         head = temp->next;
                     }
@@ -60,10 +60,6 @@ void delete_task(string task) {
                     }
                     delete temp;
                     cout << "Task deleted" << endl;
-                    return;
-                }
-                delete temp;
-                cout<<"Task deleted"<<endl;
                 break;
             }
             prev = temp;
@@ -71,8 +67,8 @@ void delete_task(string task) {
         }
     }
 }
-int count_tasks() {
-    int i;
+void count_tasks() {
+    int i=0;
     Node* temp = head;
     if (head == nullptr) {
         cout<<"Task list is empty"<<endl;
@@ -83,15 +79,31 @@ int count_tasks() {
             temp = temp->next;
         }
     }
-    return i;
+    cout<<i<<endl;
+}
+void find_task(const string& task) {
+    Node* temp = head;
+    if (head == nullptr) {
+        cout<<"Task list is empty"<<endl;
+    }
+    else {
+        while(temp != nullptr) {
+            if (temp->task == task) {
+                cout<<"Task found"<<endl;
+                return;
+            }
+            temp = temp->next;
+        }
+        cout<<"Task not found"<<endl;
+    }
 }
 int main() {
 
     int choice=0;
     string task;
 
-    while(choice != 5){
-        cout<<"Enter your choice(1=add task, 2=show tasks, 3=delete task, 4=count tasks): ";
+    while(choice != 6){
+        cout<<"Enter your choice(1=add task, 2=show tasks, 3=delete task, 4=count tasks, 5=find task): ";
         cin>>choice;
         switch(choice) {
             case 1:
@@ -108,11 +120,16 @@ int main() {
                 delete_task (task);
                 break;
             case 4:
-                int i=count_tasks();
-                cout<<i<<endl;
+                count_tasks();
                 break;
-
+            case 5:
+                cout<<"Enter task you want to find: ";
+                cin>>task;
+                find_task(task);
+                break;
+            default:
+                cout<<"Invalid choice"<<endl;
+                break;
         }
     }
-
 }
