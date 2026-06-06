@@ -97,6 +97,15 @@ void find_task(const string& task) {
         cout<<"Task not found"<<endl;
     }
 }
+void clear_list() {
+    Node* temp = head;
+    while (temp != nullptr) {
+        Node* next = temp->next;
+        delete temp;
+        temp = next;
+    }
+    head = nullptr;
+}
 int main() {
 
     int choice=0;
@@ -132,4 +141,5 @@ int main() {
                 break;
         }
     }
+    clear_list();
 }
