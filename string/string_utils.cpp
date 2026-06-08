@@ -66,3 +66,16 @@ bool digit_only(const string& s) {
     }
     return true;
 }
+string insert(const int n, string& s, char c) {
+    string temp="";
+    if(n==0) temp=c+s;
+    else{
+        for(int i=0;i<=string_length(s)-1;i++){
+            temp+=s[i];
+            if(i==n-1) {
+                temp+=c;
+            }
+        }
+    }
+    return temp;
+}

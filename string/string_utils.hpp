@@ -10,3 +10,4 @@ bool contains_char(char c, const string& s);
 int find_char(char c, const string& s);
 bool palindrome(const string& s);
 bool digit_only(const string& s);
+string insert(const int n, string& s, char c);

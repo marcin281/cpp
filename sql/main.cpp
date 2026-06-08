@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <fstream>
+
 
 using namespace std;
 
@@ -14,6 +17,15 @@ struct Table {
 struct Database {
     vector<Table> tables;
 };
+
+void load(){
+
+}
+
+void save() {
+
+}
+
 //functions
 //void insert(table, row) {
 

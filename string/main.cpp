@@ -6,6 +6,7 @@ using namespace std;
 
 int main() {
     string word;
+    int n=0;
     cin>>word;
     cout<<word<<endl;
     reverse_string(word);
@@ -25,5 +26,9 @@ int main() {
     cout<<pal<<endl;
     bool digit=digit_only(word);
     cout<<digit<<endl;
+    cin>>c;
+    cin>>n;
+    insert(n, word, c);
+    cout<<word<<endl;
     return 0;
 }
